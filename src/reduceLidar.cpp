@@ -20,7 +20,7 @@ void lasercb(const sensor_msgs::LaserScan::ConstPtr &msg)
 
 	for (size_t i = 0; i < msg->ranges.size(); i++)
 	{
-		if (!std::isinf(msg->ranges[i]) && !std::isnan(msg->ranges[i]))
+		if (std::isinf(msg->ranges[i]) || std::isnan(msg->ranges[i]))
 			pubMsg.ranges[i] = std::min(msg->ranges[i], cap);
 		else
 			pubMsg.ranges[i] = msg->ranges[i];
