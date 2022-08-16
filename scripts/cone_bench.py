@@ -58,13 +58,13 @@ def yawFromQuaternion(orientation):
 
 
 def scanCallback(data):
-    message.scandata = np.asarray(data.ranges[message.minind : message.maxind])
+    message.scandata = np.asarray(data.ranges[message.minind : message.maxind + 1])
     message.angle_inc = data.angle_increment
     if not len(message.angles):
         message.angles = np.array(
             [
                 data.angle_min + i * data.angle_increment
-                for i in range(message.minind, message.maxind)
+                for i in range(message.minind, message.maxind + 1)
             ]
         )
         message.angle_min = data.angle_min
@@ -109,7 +109,7 @@ def ray_check(goal):
             check_obs = []
             check_dist = []
             ab_dist = min(r_dist, comp_dist)  # goal_dist
-            val = (ab_dist**2 + ab_dist**2 - message.footpr**2) / (
+            val = (ab_dist ** 2 + ab_dist ** 2 - message.footpr ** 2) / (
                 2 * ab_dist * goal_dist
             )
             val = min(max(val, -1), 1)
