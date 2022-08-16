@@ -63,6 +63,16 @@ bool compare(const Eigen::Vector2i &a, const Eigen::Vector2i &b)
 
 void goalcb(const geometry_msgs::PoseStamped::ConstPtr &msg)
 {
+
+    delete tree;
+    delete narrowTree;
+    delete finalGoal;
+
+    quadtree::Box<float> box(left, top, bwidth, bheight);
+    tree = new quadtree::Quadtree<quadtree::Node *, decltype(getBox)>(box, getBox);
+    narrowTree = new quadtree::Quadtree<quadtree::Node *, decltype(getBox)>(box, getBox);
+    finalGoal = new quadtree::Node();
+
     float goal_x, goal_y;
     goal_x = msg->pose.position.x;
     goal_y = msg->pose.position.y;
@@ -76,6 +86,12 @@ void goalcb(const geometry_msgs::PoseStamped::ConstPtr &msg)
     finalGoal->pe = goalP;
     finalGoal->box.left = goal.x() - JACKAL_WIDTH / 2;
     finalGoal->box.top = goal.y() - JACKAL_LENGTH / 2;
+    finalGoal->isGoal = false;
+    finalGoal->visited = false;
+    finalGoal->isLocal = false;
+    tree->add(finalGoal);
+
+    currGoal = nullptr;
 }
 
 void odomcb(const nav_msgs::Odometry::ConstPtr &msg, Eigen::Vector3f *pose)
