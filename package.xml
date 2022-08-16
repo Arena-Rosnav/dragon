@@ -52,8 +52,5 @@
   <build_depend>nav_core</build_depend>
   <exec_depend>nav_core</exec_depend>
 
-  <!-- The export tag contains other, unspecified, tags -->
-  <export>
-    <nav_core plugin="${prefix}/farm_plugin.xml" />
-  </export>
+
 </package>
