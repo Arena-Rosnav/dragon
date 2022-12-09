@@ -931,11 +931,11 @@ int main(int argc, char **argv)
     narrowTree = new quadtree::Quadtree<quadtree::Node *, decltype(getBox)>(box, getBox);
     finalGoal = new quadtree::Node();
 
-    ros::Subscriber laserSub = nh.subscribe<sensor_msgs::LaserScan>("/scan", 1, boost::bind(&lasercb, _1, &pose));
-    ros::Subscriber odomSub = nh.subscribe<nav_msgs::Odometry>("/odom", 1, boost::bind(&odomcb, _1, &pose));
-    ros::Subscriber goalSub = nh.subscribe<geometry_msgs::PoseStamped>("/goal", 1, boost::bind(&goalcb, _1));
+    ros::Subscriber laserSub = nh.subscribe<sensor_msgs::LaserScan>("scan", 1, boost::bind(&lasercb, _1, &pose));
+    ros::Subscriber odomSub = nh.subscribe<nav_msgs::Odometry>("odom", 1, boost::bind(&odomcb, _1, &pose));
+    ros::Subscriber goalSub = nh.subscribe<geometry_msgs::PoseStamped>("move_base_simple/goal", 1, boost::bind(&goalcb, _1));
     geometry_msgs::PoseStamped::ConstPtr msg;
-    msg = ros::topic::waitForMessage<geometry_msgs::PoseStamped>("/goal", nh);
+    msg = ros::topic::waitForMessage<geometry_msgs::PoseStamped>("move_base_simple/goal", nh);
     goal_x = msg->pose.position.x;
     goal_y = msg->pose.position.y;
     Eigen::Vector2f goal(goal_x, goal_y);

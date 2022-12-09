@@ -88,7 +88,7 @@ def wrapToPi(angle):
 
 def ray_check(goal):
     marker_pub = rospy.Publisher(
-        "/visualization_marker_array", MarkerArray, queue_size=0
+        "visualization_marker_array", MarkerArray, queue_size=0
     )
     marker_arr = MarkerArray()
     # scanDataCoords()
@@ -243,10 +243,10 @@ def my_shutdown_hook():
 def main():
     global message
     message = messageClass()
-    gaps = rospy.Subscriber("/gapGoal", Float32MultiArray, gapGoalCallback)
-    odom_sub = rospy.Subscriber("/odom", Odometry, odomCallback)
-    scan_sub = rospy.Subscriber("/scan", LaserScan, scanCallback)
-    vel_Pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+    gaps = rospy.Subscriber("gapGoal", Float32MultiArray, gapGoalCallback)
+    odom_sub = rospy.Subscriber("odom", Odometry, odomCallback)
+    scan_sub = rospy.Subscriber("scan", LaserScan, scanCallback)
+    vel_Pub = rospy.Publisher("cmd_vel", Twist, queue_size=10)
 
     rospy.init_node("old_mcdonalds_local", anonymous=True)
     rate = rospy.Rate(100)  # 10hz
