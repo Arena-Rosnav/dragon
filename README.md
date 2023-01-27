@@ -6,10 +6,18 @@ For original work refer [here](https://github.com/nocholasrift/UVA-AMR-BARN--ICR
 
 
 # Installation
-
+## Add this package to your .rosinstall or clone it manually.
+```bash
+cd ~/catkin_ws/src/arena-bench # Navigate to your arena-bench location
+echo "- git:
+    local-name: ../planners/dragon
+    uri: https://github.com/Arena-Rosnav/dragon
+    version: master" >> .rosinstall
+rosws update ../planners/dragon # or rosws update
+```
 ## Activate poetry shell
 ```bash
-cd arena-rosnav # navigate to the arena-rosnav directory
+cd ~/catkin_ws/src/arena-bench # Navigate to your arena-bench location
 poetry shell
 ```
 ## Make sure to source the workspace environment
@@ -17,3 +25,4 @@ poetry shell
 cd ../.. # navigate to the catkin_ws directory
 catkin_make
 source devel/setup.zsh # if you use bash: source devel/setup.bash 
+```
