@@ -13,8 +13,8 @@ echo "- git:
     local-name: ../planners/dragon
     uri: https://github.com/Arena-Rosnav/dragon
     version: master" >> .rosinstall
-rosws update ../planners/dragon # or rosws update -->
-```
+rosws update ../planners/dragon # or rosws update 
+``` -->
 ## Activate poetry shell
 ```bash
 cd ~/catkin_ws/src/arena-rosnav # Navigate to your arena-bench location
