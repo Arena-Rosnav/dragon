@@ -31,4 +31,4 @@ source devel/setup.zsh # if you use bash: source devel/setup.bash
 ```bash
 roslaunch arena_bringup start_arena.launch local_planner:=dragon # Make sure that your virtual env/poetry is activated
 ```
-## For more details regarding usage, please refer to our [documentation](https://arena-benchmark.readthedocs.io/en/latest/user_guides/usage/)
+## For more details regarding usage, please refer to our [documentation](https://arena-rosnav.readthedocs.io/en/latest/user_guides/usage/)
