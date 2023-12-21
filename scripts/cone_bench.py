@@ -251,7 +251,7 @@ def main():
     rospy.init_node("old_mcdonalds_local", anonymous=True)
     rate = rospy.Rate(100)  # 10hz
 
-    maxSpeed = 1
+    maxSpeed = float(rospy.get_param("~max_vel_x", 1))
     minSpeed = 0.1
     maxTurn = m.pi / 2
     isDone = False
